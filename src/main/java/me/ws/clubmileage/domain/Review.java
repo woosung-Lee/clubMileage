@@ -3,6 +3,7 @@ package me.ws.clubmileage.domain;
 import lombok.Builder;
 import lombok.Getter;
 import me.ws.clubmileage.domain.enums.ReviewAction;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
