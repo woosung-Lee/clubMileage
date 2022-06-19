@@ -7,6 +7,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
+import java.util.List;
+import java.util.UUID;
+
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
@@ -30,13 +33,19 @@ public class Review {
     private Place place;
 
 
+    @ElementCollection // 1
+    @Column(name = "attachedPhotoIds") // 3
+    private List<String> attachedPhotoIds;
+
+
     @Builder
-    public Review(String reviewId, ReviewAction action, String content, User user, Place place) {
+    public Review(String reviewId, ReviewAction action, String content, User user, Place place, List<String> attachedPhotoIds) {
         this.reviewId = reviewId;
         this.action = action;
         this.content = content;
         this.user = user;
         this.place = place;
+        this.attachedPhotoIds = attachedPhotoIds;
     }
 
     public Review() {

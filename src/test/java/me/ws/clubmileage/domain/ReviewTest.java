@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @SpringBootTest
-@Transactional
+//@Transactional
 public class ReviewTest {
 
     @Autowired
@@ -38,10 +40,20 @@ public class ReviewTest {
 
         //Review
         String reviewId  = UUID.randomUUID().toString();
-        Review review = createReview(reviewId, ReviewAction.ADD, "좋아요!", rsUser, place);
 
-        System.out.println("review : " + review.getReviewId());
 
+        //첨부파일 리스트 셋팅
+        List<String> attachLists = new ArrayList<String>();
+        String attachedPhotoIds  = UUID.randomUUID().toString();
+        attachLists.add(attachedPhotoIds);
+
+        attachedPhotoIds  = UUID.randomUUID().toString();
+        attachLists.add(attachedPhotoIds);
+
+        attachedPhotoIds  = UUID.randomUUID().toString();
+        attachLists.add(attachedPhotoIds);
+
+        Review review = createReview(reviewId, ReviewAction.ADD, "좋아요!", rsUser, place, attachLists);
     }
 
     private User createUser(String userId, String name) {
@@ -62,13 +74,14 @@ public class ReviewTest {
         return place;
     }
 
-    private Review createReview(String reviewId, ReviewAction action, String content, User user, Place place) {
+    private Review createReview(String reviewId, ReviewAction action, String content, User user, Place place, List<String> attachedPhotoIds) {
         Review review = Review.builder()
                 .reviewId(reviewId)
                 .action(action)
                 .content(content)
                 .user(user)
                 .place(place)
+                .attachedPhotoIds(attachedPhotoIds)
                 .build();
         reviewRepository.save(review);
         return review;
