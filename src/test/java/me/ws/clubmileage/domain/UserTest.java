@@ -10,18 +10,18 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.util.UUID;
 
-//@SpringBootTest
-///@Transactional
+@SpringBootTest
+@Transactional
 public class UserTest {
 
     @Autowired
     private UserRepository userRepository;
 
-    //@Test
-    /*void domainTest() {
+    @Test
+    void domainTest() {
         String uuid  = UUID.randomUUID().toString();
         createUser(uuid, "홍길동1");
-    }*/
+    }
 
     private User createUser(String userId, String name) {
         User user = User.builder()

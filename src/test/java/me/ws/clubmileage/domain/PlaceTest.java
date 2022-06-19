@@ -9,17 +9,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
-//@SpringBootTest
-//@Transactional
+@SpringBootTest
+@Transactional
 public class PlaceTest {
     @Autowired
     private PlaceRepository placeRepository;
 
-    //@Test
- /*   void domainTest() {
+    @Test
+    void domainTest() {
         String uuid  = UUID.randomUUID().toString();
         createPlace(uuid, "장소1");
-    }*/
+    }
 
     private Place createPlace(String placeId, String name) {
         Place place = Place.builder()
