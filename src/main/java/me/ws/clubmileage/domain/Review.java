@@ -33,8 +33,8 @@ public class Review {
     private Place place;
 
 
-    @ElementCollection // 1
-    @Column(name = "attachedPhotoIds") // 3
+    @ElementCollection // Reivew의 ID에 연결되어 관리, 첨부파일 id 리스트
+    @CollectionTable(name = "ATTACH_PHOTO", joinColumns = @JoinColumn(name = "review_Id"))
     private List<String> attachedPhotoIds;
 
 

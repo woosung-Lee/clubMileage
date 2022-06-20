@@ -4,6 +4,7 @@ import me.ws.clubmileage.domain.enums.ReviewAction;
 import me.ws.clubmileage.repository.PlaceRepository;
 import me.ws.clubmileage.repository.ReviewRepository;
 import me.ws.clubmileage.repository.UserRepository;
+import me.ws.clubmileage.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,6 +27,9 @@ public class ReviewTest {
     @Autowired
     private ReviewRepository reviewRepository;
 
+    @Autowired
+    private UserService userService;
+
     @Test
     void domainTest() {
         //user
@@ -36,7 +40,9 @@ public class ReviewTest {
         String placeId  = UUID.randomUUID().toString();
         Place place = createPlace(placeId, "장소1");
 
-        User rsUser = userRepository.findByName("홍길동1");
+        User rsUser = userService.findUser(user);
+
+        //List<User> rsUserList = userService.findByUserList(user);
 
         //Review
         String reviewId  = UUID.randomUUID().toString();
